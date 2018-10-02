@@ -171,7 +171,10 @@ abstract class Controller
             }
 
             if (! empty($inputs[$key])) {
-                $model->{$relation['relation_name']}()->sync($inputs[$key]);
+                $filter_inputs = array_filter($inputs[$key], function ($item) {
+                   return !empty($item);
+                });
+                $model->{$relation['relation_name']}()->sync($filter_inputs);
             }
         }
 
@@ -226,7 +229,10 @@ abstract class Controller
             }
 
             if (! empty($inputs[$key])) {
-                $model->{$relation['relation_name']}()->sync($inputs[$key]);
+                $filter_inputs = array_filter($inputs[$key], function ($item) {
+                   return !empty($item);
+                });
+                $model->{$relation['relation_name']}()->sync($filter_inputs);
             }
         }
 
